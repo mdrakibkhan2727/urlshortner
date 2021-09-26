@@ -50,12 +50,12 @@ services:
     ports:
       - "33016:3306"
     environment:
-      MYSQL_DATABASE: emm
+      MYSQL_DATABASE: url_shortner
       MYSQL_ROOT_PASSWORD: root
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      - dbdata:/var/lib/mysql
+      - shortner_sql_data:/var/lib/mysql
       - ./my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
@@ -68,11 +68,11 @@ services:
     ports:
       - "27042:27017"
     environment:
-      MONGO_INITDB_DATABASE: emm
+      MONGO_INITDB_DATABASE: url_shortner
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
-      - datadb:/data/db
+      - shortner_mongo_data:/data/db
     networks:
       - app-network
 
@@ -97,6 +97,7 @@ services:
   urlshortner_redis:
     image: redis:latest
     container_name: urlshortner_redis
+    restart: always
     ports:
       - "63743:6379"
     networks:
@@ -119,7 +120,7 @@ networks:
 
 #Volumes
 volumes:
-  dbdata:
+  shortner_sql_data:
     driver: local
-  datadb:
+  shortner_mongo_data:
     driver: local
