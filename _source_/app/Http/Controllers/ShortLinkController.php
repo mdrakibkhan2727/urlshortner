@@ -12,7 +12,7 @@ class ShortLinkController extends Controller
     public function index()
     {
         $shortLinks = ShortLink::latest()->get();
-        return view('web.shorten.shortenlink',compact('shortLinks'));
+        return view('short-link.index',compact('shortLinks'));
     }
 
     public function store(ShortlinkRequest $request)
