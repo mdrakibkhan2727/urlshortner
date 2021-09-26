@@ -13,12 +13,12 @@
                 </div>
                 <form class="m-5  space-y-8" method="POST" action="{{route('shorten.store')}}" >
                     @csrf
-                    <input type="hidden" name="remember" value="true">
                     <div class="rounded-md shadow-sm -space-y-px">
-
                         <div>
-                            <label for="url_link" class="sr-only"> Enter  your  url</label>
+                            <label for="url_link" class="sr-only">{{ __('Enter  your  url') }}</label>
                             <input id="url_link" name="link" type="text" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Enter your url">
+
+                            @error('link')<small class="text-red-600">{{ $message }}</small>@enderror
                         </div>
                     </div>
                     <div>
@@ -48,7 +48,6 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Status
                             </th>
-
                             <th scope="col" class="relative px-6 py-3">
                                 <span class="sr-only">Edit</span>
                             </th>

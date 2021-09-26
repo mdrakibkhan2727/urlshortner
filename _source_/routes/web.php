@@ -20,4 +20,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[ShortLinkController::class,'index'])->name('shorten.index');
 Route::post('/',[ShortLinkController::class,'store'])->name('shorten.store');
-Route::get('{code}', [ShortLinkController::class,'shortenLink'])->name('shorten.link');
+Route::get('{code}', [ShortLinkController::class, 'forwardUrl'])->name('shorten.link');
