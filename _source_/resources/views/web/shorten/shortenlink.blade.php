@@ -1,15 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <title>Document</title>
-</head>
-<body>
-<div class="min-h-screen flex items-center justify-center bg-blue-200 py-12 px-4 sm:px-6 lg:px-8">
+@extends('layout.default')
+@section('title')
+    Shorten URL
+@endsection
+@section('content')
     <div class="max-w-md w-full space-y-8">
         <div class="max-w-md mx-auto  bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
             <div >
@@ -17,7 +10,6 @@
                     <h3 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                         Enter Shorten URL
                     </h3>
-
                 </div>
                 <form class="m-5  space-y-8" method="POST" action="{{route('shorten.store')}}" >
                     @csrf
@@ -40,7 +32,6 @@
             </div>
         </div>
     </div>
-
     <div class="flex flex-col ml-3">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -65,29 +56,29 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                         @foreach($shortLinks as $shortLink)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">
-                                            {{$shortLink->link}}
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">
+                                                {{$shortLink->link}}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900"><a href="{{route('shorten.link',$shortLink->code)}}" target="_blank">{{route('shorten.link',$shortLink->code)}}</a></div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900"><a href="{{route('shorten.link',$shortLink->code)}}" target="_blank">{{route('shorten.link',$shortLink->code)}}</a></div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                       Active
                     </span>
-                            </td>
+                                </td>
 
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                            </td>
-                        </tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                </td>
+                            </tr>
                         @endforeach
                         <!-- More people... -->
                         </tbody>
@@ -96,7 +87,4 @@
             </div>
         </div>
     </div>
-</div>
-
-</body>
-</html>
+@stop
